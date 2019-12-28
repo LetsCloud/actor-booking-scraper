@@ -96,7 +96,6 @@ const extractRoomsJQuery = () => {
     const rooms = [];
     const $ = jQuery;
 
-    console.log('extractRoomsJQuery...');
 
     // Function for extracting occupancy info.
     const occExtractor = (row) => {
@@ -113,8 +112,11 @@ const extractRoomsJQuery = () => {
     const rows = $('.hprt-table > tbody > tr:not(.hprt-cheapest-block-row)');
     if (rows && rows.length > 0) { console.log('extracting ' + rows.length + ' rooms...'); }
     for(let i = 0; i < rows.length; i++){
+        console.log('extractRoomsJQuery...');
+        
         const row = rows.eq(i);
         console.log('2row = ' + row);
+        
         const roomRow = row.find('.hprt-table-cell-roomtype');
         if (roomRow.length > 0) {
             roomType = row.find('.hprt-roomtype-icon-link');
