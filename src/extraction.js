@@ -10,6 +10,8 @@ const extractRooms = async (page) => {
     let features;
     const rooms = [];
 
+    console.log('extractRooms...');
+
     // Function for extracting occupancy info.
     const occExtractor = (hprt) => {
         if (!hprt) { return null; }
@@ -25,6 +27,7 @@ const extractRooms = async (page) => {
     const rows = await page.$$('.hprt-table > tbody > tr:not(.hprt-cheapest-block-row)');
     if (rows && rows.length > 0) { console.log('extracting ' + rows.length + ' rooms...'); }
     for (const row of rows) {
+        console.log('row = ' + row);
         const roomRow = await row.$('.hprt-table-cell-roomtype');
         if (roomRow) {
             roomType = await row.$('.hprt-roomtype-icon-link');
@@ -93,6 +96,8 @@ const extractRoomsJQuery = () => {
     const rooms = [];
     const $ = jQuery;
 
+    console.log('extractRoomsJQuery...');
+
     // Function for extracting occupancy info.
     const occExtractor = (row) => {
         if (!row || row.length < 1) { return null; }
@@ -109,6 +114,7 @@ const extractRoomsJQuery = () => {
     if (rows && rows.length > 0) { console.log('extracting ' + rows.length + ' rooms...'); }
     for(let i = 0; i < rows.length; i++){
         const row = rows.eq(i);
+        console.log('2row = ' + row);
         const roomRow = row.find('.hprt-table-cell-roomtype');
         if (roomRow.length > 0) {
             roomType = row.find('.hprt-roomtype-icon-link');
