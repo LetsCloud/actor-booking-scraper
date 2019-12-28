@@ -43,7 +43,7 @@ Apify.main(async () => {
         if (!Array.isArray(input.startUrls)) {
             throw new Error('INPUT.startUrls must an array!');
         }
-        // convert any inconsistencies to correct format
+        // convert any inconsistencies to correct formatf
         for (let i = 0; i < input.startUrls.length; i++) {
             let request = input.startUrls[i];
             if (typeof request === 'string') { request = { url: request }; }
@@ -108,7 +108,7 @@ Apify.main(async () => {
 
         // Main page handling function.
         handlePageFunction: async ({ page, request, puppeteerPool }) => {
-            console.log(`open url(${request.userData.label}): ${await page.url()}`);
+            console.log(`2open url(${request.userData.label}): ${await page.url()}`);
 
             /** Tells the crawler to re-enqueue current page and destroy the browser.
              *  Necessary if the page was open through a not working proxy. */
