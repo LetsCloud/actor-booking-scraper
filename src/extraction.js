@@ -52,7 +52,7 @@ const extractRooms = async (page) => {
             occupancy = await row.$eval('.hprt-occupancy-occupancy-info', occExtractor);
         } catch (e) { occupancy = null; }
         const persons = occupancy ? occupancy.match(/\d+/) : null;
-        const priceE = await row.$('.hprt-price-price');
+        const priceE = await row.$('.prco-valign-middle-helper');
         const priceT = priceE ? (await getAttribute(priceE, 'textContent')).replace(/\s|,/g, '').match(/(\d|\.)+/) : null;
         const priceC = priceE ? (await getAttribute(priceE, 'textContent')).replace(/\s|,/g, '').match(/[^\d.]+/) : null;
         const cond = await row.$$('.hprt-conditions li');
@@ -130,7 +130,7 @@ const extractRoomsJQuery = () => {
         let occupancy;
         try { occupancy = occExtractor(row); } catch (e) { occupancy = null; }
         const persons = occupancy ? occupancy.match(/\d+/) : null;
-        const priceE = row.find('.hprt-price-price');
+        const priceE = row.find('.prco-valign-middle-helper');
         const priceT = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/(\d|\.)+/) : null;
         const priceC = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/[^\d.]+/) : null;
         const cond = row.find('.hprt-conditions li');
