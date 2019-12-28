@@ -181,6 +181,8 @@ const extractRoomsJQuery = () => {
  * @param {Object} input - The Actor input data object.
  */
 module.exports.extractDetail = async (page, ld, input, userData) => {
+    console.log("module.exports.extractDetail ...");
+
     const addr = ld.address || null;
     const address = {
         full: addr.streetAddress,
@@ -204,6 +206,10 @@ module.exports.extractDetail = async (page, ld, input, userData) => {
     const img2 = await getAttribute(await page.$('#photo_wrapper img'), 'src');
     const img3 = html.match(/large_url: '(.+)'/);
     //const rooms = await extractRooms(page);
+    page.on('console', msg => {
+        for (let i = 0; i < msg.args().length; ++i)
+            console.log(`${i}: ${msg.args()[i]}`);
+    });
     const rooms = await page.evaluate(extractRoomsJQuery);
     return {
         order: userData.order,
