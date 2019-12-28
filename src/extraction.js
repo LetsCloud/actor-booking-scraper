@@ -90,12 +90,13 @@ const extractRooms = async (page) => {
  * Extracts information about all rooms listed by the hotel using jQuery in browser context.
  */
 const extractRoomsJQuery = () => {
+    console.log('extractRoomsJQuery...');
+
     let roomType;
     let bedText;
     let features;
     const rooms = [];
     const $ = jQuery;
-
 
     // Function for extracting occupancy info.
     const occExtractor = (row) => {
@@ -112,10 +113,9 @@ const extractRoomsJQuery = () => {
     const rows = $('.hprt-table > tbody > tr:not(.hprt-cheapest-block-row)');
     if (rows && rows.length > 0) { console.log('extracting ' + rows.length + ' rooms...'); }
     for(let i = 0; i < rows.length; i++){
-        console.log('extractRoomsJQuery...');
         
         const row = rows.eq(i);
-        console.log('2row = ' + row);
+        console.log('2row = ', row);
         
         const roomRow = row.find('.hprt-table-cell-roomtype');
         if (roomRow.length > 0) {
@@ -146,6 +146,7 @@ const extractRoomsJQuery = () => {
 
         console.log('2before price...');
         const priceE = row.find('.prco-valign-middle-helper');
+        console.log('2after pricefind -> ', priceE);
         const priceT = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/(\d|\.)+/) : null;
         const priceC = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/[^\d.]+/) : null;
         console.log('2after priceT = ' + priceT);
