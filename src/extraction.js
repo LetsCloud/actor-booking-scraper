@@ -149,7 +149,7 @@ const extractRoomsJQuery = async () => {
         let priceT;
         let priceC;
         const priceRow = row.find('.hprt-table-cell-price');
-        const temp1 = priceRow.text();
+        const temp1 = priceRow.html();
         console.log('temp1 = ', temp1);
         if (priceRow.length > 0) {
             console.log('priceRow.length > 0');
