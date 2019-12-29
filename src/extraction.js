@@ -147,8 +147,10 @@ const extractRoomsJQuery = () => {
         console.log('2before price...');
         const priceE = row.find('.prco-valign-middle-helper');
         if (priceE) { 
-            console.log(getAttribute(priceE, 'textContent'));
-            console.log('priceE.text() -> ', priceE.text());
+            const temp1 = await getAttribute(priceE, 'textContent');
+            console.log('temp1 = ', temp1);
+            const temp2 = priceE.text();
+            console.log('temp2 = ', temp2);
         } else { 
             console.log('priceE == null');
         }
