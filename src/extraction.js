@@ -149,9 +149,13 @@ const extractRoomsJQuery = async () => {
         let priceT;
         let priceC;
         const priceRow = row.find('.hprt-table-cell-price');
+        const temp1 = priceRow.text();
+        console.log('temp1 = ', temp1);
         if (priceRow.length > 0) {
             console.log('priceRow.length > 0');
             const priceE = priceRow.find('.prco-valign-middle-helper');
+        const temp2 = priceE.text();
+        console.log('temp2 = ', temp2);
             console.log(priceE);
 //            const priceE = pvmh ? (await getAttribute(pvmh, 'textContent')) : null;
             if (priceE) {
@@ -224,8 +228,8 @@ module.exports.extractDetail = async (page, ld, input, userData) => {
     //const rooms = await extractRooms(page);
     page.on('console', msg => {
         for (let i = 0; i < msg.args().length; ++i)
-//            console.log(`${i}: ${msg.args()[i]}`);
-            console.log('${msg.args()[i]}');
+            console.log(`${i}: ${msg.args()[i]}`);
+//            console.log('${msg.args()[i]}');
     });
     const rooms = await page.evaluate(extractRoomsJQuery);
     return {
