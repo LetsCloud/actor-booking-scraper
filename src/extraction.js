@@ -151,7 +151,8 @@ const extractRoomsJQuery = async () => {
         const priceRow = row.find('.hprt-table-cell-price');
         if (priceRow.length > 0) {
             console.log('priceRow.length > 0');
-            const priceE = priceRow.find('.prco-valign-middle-helper');
+            const pvmh = priceRow.find('.prco-valign-middle-helper');
+            const priceE = pvmh ? (await getAttribute(pvmh, 'textContent')) : null;
             if (priceE) {
                 console.log('priceE = ', priceE);
                 console.log('priceE.text() = ', priceE.text());
