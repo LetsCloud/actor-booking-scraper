@@ -151,8 +151,9 @@ const extractRoomsJQuery = async () => {
         const priceRow = row.find('.hprt-table-cell-price');
         if (priceRow.length > 0) {
             console.log('priceRow.length > 0');
-            const priceE = row.find('.prco-valign-middle-helper');
+            const priceE = priceRow.find('.prco-valign-middle-helper');
             if (priceE) {
+                console.log('priceE = ', priceE);
                 console.log('priceE.text() = ', priceE.text());
                 priceT = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/(\d|\.)+/) : null;
                 priceC = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/[^\d.]+/) : null;
