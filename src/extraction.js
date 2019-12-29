@@ -145,26 +145,23 @@ const extractRoomsJQuery = async () => {
         const persons = occupancy ? occupancy.match(/\d+/) : null;
 
         
-        
+        // Extract data from price section
         let priceT;
         let priceC;
         const priceRow = row.find('.hprt-table-cell-price');
         const temp1 = priceRow.html();
         console.log('temp1 = ', temp1);
+        
         if (priceRow.length > 0) {
             console.log('priceRow.length > 0');
-            const priceE = priceRow.find('.prco-valign-middle-helper');
-        const temp2 = priceE.text();
-        console.log('temp2 = ', temp2);
-            console.log(priceE);
-//            const priceE = pvmh ? (await getAttribute(pvmh, 'textContent')) : null;
+            const priceE = priceRow.find('.bui-price-display__value');
+            const temp2 = priceE.html();
+            console.log('temp2 = ', temp2);
             if (priceE) {
-                console.log('priceE = ', priceE);
-                console.log('priceE.text() = ', priceE.text());
                 priceT = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/(\d|\.)+/) : null;
                 priceC = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/[^\d.]+/) : null;
-                console.log('2after priceT = ' + priceT);
-                console.log('2after priceC = ' + priceC);
+                console.log('priceT = ', priceT);
+                console.log('priceC = ', priceC);
             }
         }
 
