@@ -146,7 +146,13 @@ const extractRoomsJQuery = () => {
 
         console.log('2before price...');
         const priceE = row.find('.prco-valign-middle-helper');
-        console.log('2after pricefind -> ', priceE);
+        if (priceE) { 
+            console.log(await getAttribute(priceE, 'textContent'));
+            console.log('priceE.text() -> ', priceE.text());
+        } else { 
+            console.log('priceE == null');
+        }
+        
         const priceT = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/(\d|\.)+/) : null;
         const priceC = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/[^\d.]+/) : null;
         console.log('2after priceT = ' + priceT);
