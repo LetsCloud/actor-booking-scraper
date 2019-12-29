@@ -225,7 +225,7 @@ module.exports.extractDetail = async (page, ld, input, userData) => {
     page.on('console', msg => {
         for (let i = 0; i < msg.args().length; ++i)
 //            console.log(`${i}: ${msg.args()[i]}`);
-            console.log(${msg.args()[i]});
+            console.log('${msg.args()[i]}');
     });
     const rooms = await page.evaluate(extractRoomsJQuery);
     return {
