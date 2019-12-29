@@ -144,22 +144,26 @@ const extractRoomsJQuery = async () => {
         try { occupancy = occExtractor(row); } catch (e) { occupancy = null; }
         const persons = occupancy ? occupancy.match(/\d+/) : null;
 
-        console.log('2before price...');
-        const priceE = row.find('.prco-valign-middle-helper');
-        if (priceE) { 
-//            const temp1 = await getAttribute(priceE, 'textContent');
-//            console.log('temp1 = ', temp1);
-            const temp2 = priceE.text();
-            console.log('temp2 = ', temp2);
-        } else { 
-            console.log('priceE == null');
-        }
         
-        const priceT = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/(\d|\.)+/) : null;
-        const priceC = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/[^\d.]+/) : null;
-        console.log('2after priceT = ' + priceT);
-        console.log('2after priceC = ' + priceC);
+        
+        let priceT;
+        let priceC;
+        const priceRow = row.find('.hprt-table-cell-price');
+        if (priceRow.length > 0) {
+            console.log('priceRow.length > 0');
+            const priceE = row.find('.prco-valign-middle-helper');
+            if (priceE) {
+                console.log('priceE.text() = ', priceE.text());
+                priceT = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/(\d|\.)+/) : null;
+                priceC = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/[^\d.]+/) : null;
+                console.log('2after priceT = ' + priceT);
+                console.log('2after priceC = ' + priceC);
+            }
+        }
 
+        
+
+        
         const cond = row.find('.hprt-conditions li');
 
         const room = { available: true };
