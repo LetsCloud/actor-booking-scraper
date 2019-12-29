@@ -115,8 +115,8 @@ const extractRoomsJQuery = async () => {
     for(let i = 0; i < rows.length; i++){
         
         const row = rows.eq(i);
-        console.log('2row = ', row);
         
+        // Extract data from the roomtype section
         const roomRow = row.find('.hprt-table-cell-roomtype');
         if (roomRow.length > 0) {
             roomType = row.find('.hprt-roomtype-icon-link');
@@ -145,21 +145,21 @@ const extractRoomsJQuery = async () => {
         const persons = occupancy ? occupancy.match(/\d+/) : null;
 
         
-        // Extract data from price section
+        // Extract data from the price section
         let priceT;
         let priceC;
         const priceRow = row.find('.hprt-table-cell-price');
         const temp1 = priceRow.html();
-        console.log('temp1 = ', temp1);
+        console.log('priceRow.html() = ', temp1);
         
         if (priceRow.length > 0) {
             console.log('priceRow.length > 0');
             const priceE = priceRow.find('.bui-price-display__value');
             const temp2 = priceE.html();
-            console.log('temp2 = ', temp2);
+            console.log('priceE.html() = ', temp2);
             if (priceE) {
-                priceT = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/(\d|\.)+/) : null;
-                priceC = priceE.length > 0 ? priceE.text().replace(/\s|,/g, '').match(/[^\d.]+/) : null;
+                priceT = priceE.length > 0 ? priceE.html().replace(/\s|,/g, '').match(/(\d|\.)+/) : null;
+                priceC = priceE.length > 0 ? priceE.html().replace(/\s|,/g, '').match(/[^\d.]+/) : null;
                 console.log('priceT = ', priceT);
                 console.log('priceC = ', priceC);
             }
