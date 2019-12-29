@@ -89,7 +89,7 @@ const extractRooms = async (page) => {
 /**
  * Extracts information about all rooms listed by the hotel using jQuery in browser context.
  */
-const extractRoomsJQuery = () => {
+const extractRoomsJQuery = async () => {
     console.log('extractRoomsJQuery...');
 
     let roomType;
