@@ -306,7 +306,9 @@ module.exports.listPageFunction = (input) => new Promise((resolve, reject) => {
         ++started;
         sr.scrollIntoView();
         const getPrice = function () {
-            return $(sr).find('.bui-price-display__value, :not(strong).site_price, .totalPrice, strong.price');
+            const retPrice = $(sr).find('.bui-price-display__value, :not(strong).site_price, .totalPrice, strong.price');
+            console.log(`retPrice: ${retPrice}`);
+            return retPrice;
         };
 
         // When the price is ready, extract data.
