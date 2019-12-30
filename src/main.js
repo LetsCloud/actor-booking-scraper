@@ -237,6 +237,12 @@ Apify.main(async () => {
                     console.log('extracting data...');
                     await Apify.setValue('page.html', await page.content(), {contentType: 'text/html'});
                     await Apify.utils.puppeteer.injectJQuery(page);
+                    
+                    page.on('console', msg => {
+                        for (let i = 0; i < msg.args().length; ++i)
+                            console.log(`${i}: ${msg.args()[i]}`);
+                    });
+                    
                     const result = await page.evaluate(listPageFunction, input);
                     console.log('Found ' + result.length + ' results');
                     if (result.length > 0) {
